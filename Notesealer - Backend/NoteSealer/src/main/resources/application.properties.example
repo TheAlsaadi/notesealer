@@ -1,0 +1,13 @@
+spring.application.name=project-name
+
+spring.datasource.url=database-connection
+spring.datasource.username=database-username
+spring.datasource.password=database-password
+spring.datasource.driver-class-name=database-driver
+
+spring.jpa.database-platform=database-dialect
+spring.jpa.hibernate.ddl-auto=ex{update, validate, none, create}
+spring.jpa.show-sql=ex{true or false}
+
+jwt.secret=secret-key
+jwt.expiration=86400000

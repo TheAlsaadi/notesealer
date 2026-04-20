@@ -1,0 +1,89 @@
+.card {
+  position: relative;
+  background-color: transparent;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border: 2px solid var(--heading-color);
+  padding: 16px;
+  height: 100%;
+
+  .delete, .select {
+    position: absolute;
+    right: -2px;
+    top: -2px;
+    width: 30px;
+    height: 30px;
+    padding: 3px;
+    border: 2px solid var(--main-color);
+    color: var(--main-color);
+    background-color: transparent;
+  }
+  .fill{
+    width: 100%;
+    height: 100%;
+    background-color: var(--main-color);
+  }
+
+  .note-info {
+    display: flex;
+    flex-direction: column;
+    h3 {
+      color: var(--main-color);
+      font-size: 1.4rem;
+    }
+
+    .content {
+      word-wrap: break-word;
+      overflow-wrap: break-word;
+      word-break: break-word;
+    }
+
+    .date {
+      color: var(--main-color);
+    }
+  }
+
+  .edit-button {
+    display: flex;
+    justify-content: end;
+
+    button {
+      width: 90px;
+      height: 40px;
+      background-color: transparent;
+      border: 2px solid var(--main-color);
+      color: var(--main-color);
+    }
+  }
+}
+
+@media (min-width: 581px) and (max-width: 800px) {
+  h3 {
+    color: var(--main-color);
+    font-size: 1.7rem;
+  }
+
+  .content {
+    font-size: 1.4rem;
+  }
+
+  .date {
+    font-size: 1.4rem;
+  }
+}
+
+@media (min-width: 100px) and (max-width: 580px) {
+  h3 {
+    color: var(--main-color);
+    font-size: 1.9rem;
+  }
+
+  .content {
+    font-size: 1.6rem;
+  }
+
+  .date {
+    font-size: 1.6rem;
+  }
+}

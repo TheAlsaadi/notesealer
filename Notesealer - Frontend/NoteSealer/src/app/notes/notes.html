@@ -1,0 +1,74 @@
+<div class="container">
+  <div class="grid-top">
+    <div class="upper-section">
+      <button class="sort-button" (click)="sortNotes()">
+        Sort By Date
+        @if (sortDirection() === "ASC" ) {
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="square"
+              stroke-linejoin="miter"
+            >
+              <line x1="12" y1="19" x2="12" y2="5" />
+              <polyline points="6,11 12,5 18,11" />
+            </svg>
+          }
+        @else if (sortDirection() === "DESC" ) {
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="square"
+              stroke-linejoin="miter"
+            >
+              <line x1="12" y1="5" x2="12" y2="19" />
+              <polyline points="6,13 12,19 18,13" />
+            </svg>
+        }
+      </button>
+      <div class="select-actions">
+        @if (isSelectionEnabled()) {
+          <div class="delete-cancel">
+            <button (click)="resetSelection()">Cancel Selection</button>
+            <button (click)="deleteSelection()">Delete {{ selectedNotes().length }} Notes</button>
+          </div>
+        } @else {
+          <button class="select-button" (click)="isSelectionEnabled.set(true)">Select Notes</button>
+        }
+      </div>
+      <button class="new-note-button" routerLink="/note-editor">New Note +</button>
+    </div>
+    <div class="input-container">
+      <input placeholder="Search" type="text" [formControl]="searchControl" />
+    </div>
+  </div>
+
+  @if (loading()) {
+    <div style="display: flex; justify-content: center">
+      <app-loading-popup [moveable]="true"></app-loading-popup>
+    </div>
+  } @else {
+    <section>
+      @for (note of notesShown(); track $index) {
+        <app-note-card
+          (unselect)="unselectNote($event)"
+          (select)="selectNote($event)"
+          [note]="note"
+          (noteDeleted)="refresh()"
+          [isSelected]="checkSelected(note)"
+          [isSelectionEnabled]="isSelectionEnabled()"
+        ></app-note-card>
+      } @empty {
+        <h2>No notes found</h2>
+      }
+    </section>
+  }
+</div>

@@ -1,0 +1,599 @@
+<div class="header-container">
+  <header class="bungee-regular">
+    <button class="mobile-menu" (click)="isOptionsShown.update(p => !p)">
+      @if (themeService.theme() == 'dark') {
+        <img src="avatar.svg" alt="" />
+      } @else {
+        <img src="avatar-2.svg" alt="" />
+      }
+      @if (isOptionsShown()) {
+        <div (click)="$event.stopPropagation()" class="account-options mobile-options">
+          <div>{{ username() }}</div>
+          <button (click)="themeService.toggleTheme()" class="autoSave">
+            <p>
+              Light/Dark Theme
+            </p>
+            @if (themeService.theme() == 'dark') {
+              <img src="moon.svg" alt="" height="20" width="20" />
+            } @else {
+              <img src="sun.svg" alt="" height="20" width="20" />
+            }
+          </button>
+          <button (click)="$event.stopPropagation()" (click)="updateAutoSave()" class="autoSave">
+            <p>Enable Auto Save</p>
+            @if (settingsService.settings().autoSave) {
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="square"
+                stroke-linejoin="miter"
+              >
+                <rect x="3" y="3" width="18" height="18" />
+                <rect x="7" y="7" width="10" height="10" fill="currentColor" stroke="none" />
+              </svg>
+            } @else {
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="square"
+                stroke-linejoin="miter"
+              >
+                <rect x="3" y="3" width="18" height="18" />
+              </svg>
+            }
+          </button>
+          <button
+            (click)="$event.stopPropagation()"
+            (click)="updateAlternativeTheme()"
+            class="alternativeTheme"
+          >
+            <p>Enable Alternative Theme</p>
+            @if (settingsService.settings().alternativeTheme) {
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="square"
+                stroke-linejoin="miter"
+              >
+                <rect x="3" y="3" width="18" height="18" />
+                <rect x="7" y="7" width="10" height="10" fill="currentColor" stroke="none" />
+              </svg>
+            } @else {
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="square"
+                stroke-linejoin="miter"
+              >
+                <rect x="3" y="3" width="18" height="18" />
+              </svg>
+            }
+          </button>
+          <button class="logout" (click)="logout()">Logout</button>
+        </div>
+      }
+    </button>
+    <!-- the phone menu end -->
+    <button class="account" (click)="isOptionsShown.update(p => !p)">
+      @if (themeService.theme() == 'dark') {
+        <img src="avatar.svg" alt="" />
+      } @else {
+        <img src="avatar-2.svg" alt="" />
+      }
+      @if (isOptionsShown()) {
+        <div (click)="$event.stopPropagation()" class="account-options">
+          <button (click)="$event.stopPropagation()" (click)="updateAutoSave()" class="autoSave">
+            <p>Enable Auto Save</p>
+            @if (settingsService.settings().autoSave) {
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="square"
+                stroke-linejoin="miter"
+              >
+                <rect x="3" y="3" width="18" height="18" />
+                <rect x="7" y="7" width="10" height="10" fill="currentColor" stroke="none" />
+              </svg>
+            } @else {
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="square"
+                stroke-linejoin="miter"
+              >
+                <rect x="3" y="3" width="18" height="18" />
+              </svg>
+            }
+          </button>
+          <button
+            (click)="$event.stopPropagation()"
+            (click)="updateAlternativeTheme()"
+            class="alternativeTheme"
+          >
+            <p>Enable Alternative Theme</p>
+            @if (settingsService.settings().alternativeTheme) {
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="square"
+                stroke-linejoin="miter"
+              >
+                <rect x="3" y="3" width="18" height="18" />
+                <rect x="7" y="7" width="10" height="10" fill="currentColor" stroke="none" />
+              </svg>
+            } @else {
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="square"
+                stroke-linejoin="miter"
+              >
+                <rect x="3" y="3" width="18" height="18" />
+              </svg>
+            }
+          </button>
+          <button class="logout" (click)="logout()">Logout</button>
+        </div>
+      }
+    </button>
+    <div class="account-name">{{ username() }}</div>
+    <button (click)="themeService.toggleTheme()" class="theme-container">
+      @if (themeService.theme() == 'dark') {
+        <img src="moon.svg" alt="" height="20" width="20" />
+      } @else {
+        <img src="sun.svg" alt="" height="20" width="20" />
+      }
+    </button>
+    <button class="save" (click)="save()">
+      @if (saved()) {
+        <svg
+          style="color: var(--main-color)"
+          width="20"
+          height="20"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="square"
+          stroke-linejoin="miter"
+        >
+          <path d="M5 3H19L21 5V21H3V3H5Z" />
+          <path d="M7 3V8H15V3" />
+          <polyline points="8,15 11,18 16,12" />
+        </svg>
+      } @else if (isSaving()) {
+        <svg
+          width="20"
+          height="20"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="square"
+          stroke-linejoin="miter"
+        >
+          <path d="M5 3H19L21 5V21H3V3H5Z" opacity="0.4" />
+          <path d="M7 3V8H15V3" opacity="0.4" />
+          <path d="M7 21V13H17V21" opacity="0.4" />
+          <line x1="12" y1="11" x2="12" y2="17">
+            <animate attributeName="y1" values="11;13;11" dur="0.8s" repeatCount="indefinite" />
+            <animate attributeName="y2" values="17;15;17" dur="0.8s" repeatCount="indefinite" />
+          </line>
+          <polyline points="9,14 12,17 15,14">
+            <animate
+              attributeName="points"
+              values="9,14 12,17 15,14;9,13 12,15 15,13;9,14 12,17 15,14"
+              dur="0.8s"
+              repeatCount="indefinite"
+            />
+          </polyline>
+        </svg>
+      } @else {
+        <svg
+          width="20"
+          height="20"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="square"
+          stroke-linejoin="miter"
+        >
+          <path d="M5 3H19L21 5V21H3V3H5Z" />
+          <path d="M7 3V8H15V3" />
+          <path d="M7 21V13H17V21" />
+        </svg>
+      }
+    </button>
+    <button class="exit" (click)="isDialogOpen.set(true)">
+      <svg
+        width="20"
+        height="20"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="square"
+        stroke-linejoin="miter"
+      >
+        <line x1="5" y1="5" x2="19" y2="19" />
+        <line x1="19" y1="5" x2="5" y2="19" />
+      </svg>
+    </button>
+  </header>
+  <input placeholder="Title" type="text" [formControl]="title" />
+</div>
+ <!-- Toolbar -->
+  <div class="ne__bar">
+    <!-- Formatting -->
+    <div class="ne__grp">
+      <button
+        class="ne__btn"
+        (click)="editor.chain().focus().toggleBold().run()"
+        [class.on]="editor.isActive('bold')"
+        title="Bold"
+      >
+        B
+      </button>
+      <button
+        class="ne__btn"
+        (click)="editor.chain().focus().toggleItalic().run()"
+        [class.on]="editor.isActive('italic')"
+        title="Italic"
+      >
+        <i> I </i>
+      </button>
+      <button
+        class="ne__btn"
+        (click)="editor.chain().focus().toggleUnderline().run()"
+        [class.on]="editor.isActive('underline')"
+        title="Underline"
+      >
+        <svg
+          width="16"
+          height="16"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path d="M6 4v6a6 6 0 0 0 12 0V4" />
+          <line x1="4" y1="20" x2="20" y2="20" />
+        </svg>
+      </button>
+      <button
+        class="ne__btn"
+        (click)="editor.chain().focus().toggleStrike().run()"
+        [class.on]="editor.isActive('strike')"
+        title="Strikethrough"
+      >
+        <svg
+          width="16"
+          height="16"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path d="M17.3 4.9c-1.2-1-2.8-1.5-4.5-1.5-3.6 0-5.4 2-5.4 4.2 0 .8.2 1.5.5 2.1" />
+          <path d="M4 12h16" />
+          <path d="M6.7 19.1c1.2 1 2.8 1.5 4.5 1.5 3.6 0 5.4-2 5.4-4.2 0-.8-.2-1.5-.5-2.1" />
+        </svg>
+      </button>
+      <button
+        class="ne__btn"
+        (click)="editor.chain().focus().toggleHighlight().run()"
+        [class.on]="editor.isActive('highlight')"
+        title="Highlight"
+      >
+        <svg
+          width="16"
+          height="16"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path d="m9 11-6 6v3h9l3-3" />
+          <path d="m22 12-4.6 4.6a2 2 0 0 1-2.8 0l-5.2-5.2a2 2 0 0 1 0-2.8L14 4" />
+        </svg>
+      </button>
+    </div>
+
+    <span class="ne__sep"></span>
+
+    <!-- Headings -->
+    <div class="ne__grp">
+      <button
+        class="ne__btn"
+        (click)="editor.chain().focus().toggleHeading({ level: 1 }).run()"
+        [class.on]="editor.isActive('heading', { level: 1 })"
+      >
+        H1
+      </button>
+      <button
+        class="ne__btn"
+        (click)="editor.chain().focus().toggleHeading({ level: 2 }).run()"
+        [class.on]="editor.isActive('heading', { level: 2 })"
+      >
+        H2
+      </button>
+      <button
+        class="ne__btn"
+        (click)="editor.chain().focus().toggleHeading({ level: 3 }).run()"
+        [class.on]="editor.isActive('heading', { level: 3 })"
+      >
+        H3
+      </button>
+    </div>
+
+    <span class="ne__sep"></span>
+
+    <!-- Lists -->
+    <div class="ne__grp">
+      <button
+        class="ne__btn"
+        (click)="editor.chain().focus().toggleBulletList().run()"
+        [class.on]="editor.isActive('bulletList')"
+        title="Bullet List"
+      >
+        <svg
+          width="16"
+          height="16"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <line x1="8" y1="6" x2="21" y2="6" />
+          <line x1="8" y1="12" x2="21" y2="12" />
+          <line x1="8" y1="18" x2="21" y2="18" />
+          <circle cx="4" cy="6" r="1" fill="currentColor" />
+          <circle cx="4" cy="12" r="1" fill="currentColor" />
+          <circle cx="4" cy="18" r="1" fill="currentColor" />
+        </svg>
+      </button>
+      <button
+        class="ne__btn"
+        (click)="editor.chain().focus().toggleOrderedList().run()"
+        [class.on]="editor.isActive('orderedList')"
+        title="Numbered List"
+      >
+        <svg
+          width="16"
+          height="16"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <line x1="10" y1="6" x2="21" y2="6" />
+          <line x1="10" y1="12" x2="21" y2="12" />
+          <line x1="10" y1="18" x2="21" y2="18" />
+          <text x="2" y="8" font-size="8" fill="currentColor" stroke="none" font-weight="600">
+            1
+          </text>
+          <text x="2" y="14" font-size="8" fill="currentColor" stroke="none" font-weight="600">
+            2
+          </text>
+          <text x="2" y="20" font-size="8" fill="currentColor" stroke="none" font-weight="600">
+            3
+          </text>
+        </svg>
+      </button>
+      <button
+        class="ne__btn"
+        (click)="editor.chain().focus().toggleTaskList().run()"
+        [class.on]="editor.isActive('taskList')"
+        title="Task List"
+      >
+        <svg
+          width="16"
+          height="16"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <rect x="3" y="5" width="6" height="6" rx="1" />
+          <path d="m3 17 2 2 4-4" />
+          <line x1="13" y1="8" x2="21" y2="8" />
+          <line x1="13" y1="18" x2="21" y2="18" />
+        </svg>
+      </button>
+    </div>
+
+    <span class="ne__sep"></span>
+
+    <!-- Alignment -->
+    <div class="ne__grp">
+      <button
+        class="ne__btn ne__btn--sm"
+        (click)="editor.chain().focus().setTextAlign('left').run()"
+        [class.on]="editor.isActive({ textAlign: 'left' })"
+      >
+        <svg
+          width="16"
+          height="16"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <line x1="3" y1="6" x2="21" y2="6" />
+          <line x1="3" y1="12" x2="15" y2="12" />
+          <line x1="3" y1="18" x2="18" y2="18" />
+        </svg>
+      </button>
+      <button
+        class="ne__btn ne__btn--sm"
+        (click)="editor.chain().focus().setTextAlign('center').run()"
+        [class.on]="editor.isActive({ textAlign: 'center' })"
+      >
+        <svg
+          width="16"
+          height="16"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <line x1="3" y1="6" x2="21" y2="6" />
+          <line x1="6" y1="12" x2="18" y2="12" />
+          <line x1="4" y1="18" x2="20" y2="18" />
+        </svg>
+      </button>
+      <button
+        class="ne__btn ne__btn--sm"
+        (click)="editor.chain().focus().setTextAlign('right').run()"
+        [class.on]="editor.isActive({ textAlign: 'right' })"
+      >
+        <svg
+          width="16"
+          height="16"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <line x1="3" y1="6" x2="21" y2="6" />
+          <line x1="9" y1="12" x2="21" y2="12" />
+          <line x1="6" y1="18" x2="21" y2="18" />
+        </svg>
+      </button>
+    </div>
+
+    <span class="ne__sep"></span>
+
+    <!-- Blocks -->
+    <div class="ne__grp">
+      <button
+        class="ne__btn"
+        (click)="editor.chain().focus().toggleBlockquote().run()"
+        [class.on]="editor.isActive('blockquote')"
+        title="Blockquote"
+      >
+        <svg
+          width="16"
+          height="16"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path
+            d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V20c0 1 0 1 1 1"
+          />
+          <path
+            d="M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3c0 1 0 1 1 1"
+          />
+        </svg>
+      </button>
+      <button
+        class="ne__btn"
+        (click)="editor.chain().focus().toggleCodeBlock().run()"
+        [class.on]="editor.isActive('codeBlock')"
+        title="Code Block"
+      >
+        &lt;/&gt;
+      </button>
+      <button
+        class="ne__btn"
+        (click)="editor.chain().focus().setHorizontalRule().run()"
+        title="Divider"
+      >
+        &#8212;
+      </button>
+    </div>
+
+    <span class="ne__sep"></span>
+
+    <!-- Link -->
+    <div class="ne__grp">
+      <button class="ne__btn" (click)="addLink()" [class.on]="editor.isActive('link')" title="Link">
+        &#128279;
+      </button>
+      @if (editor.isActive('link')) {
+        <button class="ne__btn" (click)="removeLink()" title="Unlink">&#10005;</button>
+      }
+    </div>
+
+    <div class="ne__push"></div>
+
+    <!-- Undo / Redo -->
+    <div class="ne__grp">
+      <button class="ne__btn" (click)="editor.chain().focus().undo().run()" title="Undo">
+        &#8617;
+      </button>
+      <button class="ne__btn" (click)="editor.chain().focus().redo().run()" title="Redo">
+        &#8618;
+      </button>
+    </div>
+  </div>
+
+<div class="ne">
+ 
+  <!-- Editor -->
+  <div class="ne__body">
+    <div tiptapEditor [editor]="editor"></div>
+  </div>
+</div>
+@if (isDialogOpen()) {
+  <app-confirm-dialog
+    context="Any unsaved changes will be discarded!"
+    (cancel)="isDialogOpen.set(false)"
+    (confirm)="exit()"
+  ></app-confirm-dialog>
+}

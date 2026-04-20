@@ -1,0 +1,105 @@
+header{
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  padding-right: 10px;
+
+  .account, .account-name, .theme-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid var(--main-color);
+    height: 50px;
+  }
+  .account, .theme-container{
+    aspect-ratio: 1/1;
+    position: relative;
+    background-color: transparent;
+    cursor: pointer;
+  }
+  .account-name{
+    padding: 0 20px;
+  }
+
+  .account-options{
+    position: absolute;
+    bottom: -100px;
+    left: -5px ;
+    background-color: var(--bg-color);
+    border: 2px solid var(--main-color);
+    padding: 8px;
+    display: flex;
+    align-items: start;
+    flex-direction: column;
+    width: max-content;
+    gap: 5px;
+
+    .logout, .autoSave, .alternativeTheme{
+      background-color: transparent;
+      border: none;
+      transition: color 200ms ease;
+        width: 100%;
+        text-align: left;
+
+
+        &:hover{
+          background-color: var(--main-color-hover);
+        }
+    }
+    .logout{
+      color: #7c0d0d;
+    }
+
+    .autoSave, .alternativeTheme{
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      justify-content: space-between;
+
+      svg{
+        color: var(--main-color);
+      }
+    }
+  }
+}
+
+main{
+  margin-top: 100px;
+
+  h2{
+    text-align: center;
+    font-size: 2.6rem;
+    color: var(--heading-color);
+
+    span{
+      font-size: 3rem;
+      color: var(--main-color);
+    }
+  }
+}
+
+@media (min-width: 581px) and (max-width: 800px){
+  h2{
+    font-size: 2rem !important;
+    span{
+      font-size: 2.6rem !important;
+    }
+  }
+
+  header{
+    padding-right: 5px;
+  }
+}
+
+@media (min-width: 100px) and (max-width: 580px){
+  h2{
+    font-size: 1.8rem !important;
+    span{
+      font-size: 2.2rem !important;
+    }
+  }
+  header{
+    padding-right: 0px;
+  }
+}

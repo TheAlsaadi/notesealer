@@ -1,0 +1,197 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100dvh;
+}
+
+h1 {
+  margin-bottom: 10px;
+  font-size: 3rem;
+
+  span {
+    display: block;
+    text-align: center;
+    color: var(--main-color);
+    font-size: 30px;
+  }
+}
+
+form {
+  border: 2px solid var(--heading-color);
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+
+  .form-fields {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+  }
+
+  .form-field {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+
+    label {
+      color: var(--main-color);
+      font-size: 1.5rem;
+    }
+
+    input {
+      height: 50px;
+      width: 100%;
+      min-width: 400px;
+      max-width: 400px;
+      outline: none;
+      font-size: 1.5rem;
+      border: 2px solid var(--heading-color);
+      background-color: transparent;
+      color: var(--main-color);
+    }
+
+    .eye-icon {
+      position: absolute;
+      right: 10px;
+      top: 46px;
+      transition: color 200ms ease;
+      cursor: pointer;
+
+      &:hover {
+        color: var(--main-color);
+      }
+    }
+
+    .f-y-p {
+      font-size: 14px;
+      cursor: pointer;
+    }
+  }
+
+  .a-h-a {
+    text-align: center;
+    cursor: pointer;
+    font-size: 14px;
+    transition: color 200ms ease;
+    margin-bottom: 6px;
+
+    &:hover{
+      color: var(--main-color);
+    }
+  }
+
+  button {
+    width: 100%;
+    min-width: 0;
+    max-width: 400px;
+    height: 50px;
+    background-color: transparent;
+    border: 2px solid var(--heading-color);
+  }
+  .log {
+    border-color: var(--main-color);
+    font-size: 1.5rem;
+  }
+  .sign {
+    font-size: 1.5rem;
+    color: var(--main-color);
+    margin-bottom: 5px;
+  }
+}
+
+@media (min-width: 501px) and (max-width: 700px) {
+  h1 {
+    font-size: 2.8rem;
+
+    span {
+      font-size: 1.6rem;
+    }
+  }
+
+  form {
+    .form-field {
+      label {
+        font-size: 1.4rem;
+      }
+
+      input {
+        height: 48px;
+        min-width: 280px;
+        font-size: 1.4rem;
+      }
+
+      .eye-icon {
+        right: 10px;
+        top: 40.4px;
+      }
+
+      .f-y-p {
+        font-size: 0.9rem;
+      }
+    }
+
+    .a-h-a {
+      font-size: 0.9rem;
+    }
+
+    button {
+      height: 48px;
+    }
+    .sign {
+      font-size: 1.1rem;
+    }
+    .log {
+      font-size: 1.4rem;
+    }
+  }
+}
+
+@media (min-width: 100px) and (max-width: 500px) {
+  h1 {
+    font-size: 2.5rem;
+
+    span {
+      font-size: 1.5rem;
+    }
+  }
+
+  form {
+    .form-field {
+      label {
+        font-size: 1.3rem;
+      }
+
+      input {
+        height: 45px;
+        min-width: 0;
+        font-size: 1.3rem;
+      }
+
+      .eye-icon {
+        right: 10px;
+        top: 40.4px;
+      }
+
+      .f-y-p {
+        font-size: 0.8rem;
+      }
+    }
+
+    .a-h-a {
+      font-size: 0.8rem;
+    }
+
+    button {
+      height: 45px;
+    }
+    .sign {
+      font-size: 1rem;
+    }
+    .log {
+      font-size: 1.3rem;
+    }
+  }
+}

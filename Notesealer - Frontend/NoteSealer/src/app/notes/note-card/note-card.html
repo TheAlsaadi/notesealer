@@ -1,0 +1,29 @@
+<div class="card" longPress [longPressThreshold]="500" (longPress)="selectNote()">
+  @if (isSelectionEnabled()) {
+    <button class="select" (click)="$event.stopPropagation()" (click)="(!isSelected() ? selectNote() : unselectNote())">
+      @if (isSelected()) {
+            <div class="fill"></div>
+          }          
+    </button>
+  }@else {
+    <button class="delete" (click)="$event.stopPropagation()" (click)="isDialogOpen.set(true)">X</button>
+  }
+  <div class="note-info">
+    <h3>{{ note().title ? note().title : 'No Title' }}</h3>
+    <p class="content bungee-hairline-regular">{{ getPreview(note().content) }}</p>
+    <p class="date bungee-hairline-regular">{{ note().updatedAt | date: 'short' }}</p>
+  </div>
+  <div class="edit-button">
+    <button [routerLink]="`/note-editor/${note().id}`">Edit</button>
+  </div>
+</div>
+@if (isDialogOpen()) {
+  <app-confirm-dialog
+    context="Deleting this note is irreversible!"
+    (cancel)="isDialogOpen.set(false)"
+    (confirm)="delete()"
+  ></app-confirm-dialog>
+}
+@if (loading()){
+  <app-loading-popup></app-loading-popup>
+}

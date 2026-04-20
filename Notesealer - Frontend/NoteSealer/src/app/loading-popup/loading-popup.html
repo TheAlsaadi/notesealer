@@ -1,0 +1,12 @@
+@if (!moveable()) {
+  <div class="loading-container bungee-hairline-regular">
+    <img
+      [src]="themeService.theme() === 'light' ? (!themeService.isAlternative() ? 'loading-light.svg' : 'loading-alternative-light.svg') : (!themeService.isAlternative() ? 'loading-dark.svg' : 'loading-alternative-dark.svg')"
+      alt=""
+    />
+  </div>
+} @else {
+  <img 
+      [src]="themeService.theme() === 'light' ? (!themeService.isAlternative() ? 'loading-light.svg' : 'loading-alternative-light.svg') : (!themeService.isAlternative() ? 'loading-dark.svg' : 'loading-alternative-dark.svg')"
+  />
+}

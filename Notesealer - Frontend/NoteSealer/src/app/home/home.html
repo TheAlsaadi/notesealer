@@ -1,0 +1,94 @@
+<header class="bungee-regular">
+  <button class="account" (click)="isOptionsShown.update(p => !p)">
+    @if (themeService.theme() == 'dark') {
+      <img src="avatar.svg" alt="" />
+    } @else {
+      <img src="avatar-2.svg" alt="" />
+    }
+    @if (isOptionsShown()) {
+      <div (click)="$event.stopPropagation()" class="account-options">
+        <button (click)="updateAutoSave()" class="autoSave">
+          <p>Enable Auto Save</p>
+          @if (settingsService.settings().autoSave) {
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="square"
+              stroke-linejoin="miter"
+            >
+              <rect x="3" y="3" width="18" height="18" />
+              <rect x="7" y="7" width="10" height="10" fill="currentColor" stroke="none" />
+            </svg>
+          } @else {
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="square"
+              stroke-linejoin="miter"
+            >
+              <rect x="3" y="3" width="18" height="18" />
+            </svg>
+          }
+        </button>
+        <button (click)="updateAlternativeTheme()" class="alternativeTheme">
+          <p>Enable Alternative Theme</p>
+          @if (settingsService.settings().alternativeTheme) {
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="square"
+              stroke-linejoin="miter"
+            >
+              <rect x="3" y="3" width="18" height="18" />
+              <rect x="7" y="7" width="10" height="10" fill="currentColor" stroke="none" />
+            </svg>
+          } @else {
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="square"
+              stroke-linejoin="miter"
+            >
+              <rect x="3" y="3" width="18" height="18" />
+            </svg>
+          }
+        </button>
+        <button class="logout" (click)="logout()">Logout</button>
+      </div>
+    }
+  </button>
+  <div class="account-name">{{ username() }}</div>
+  <button (click)="themeService.toggleTheme()" class="theme-container">
+    @if (themeService.theme() == 'dark') {
+      <img src="moon.svg" alt="" height="20" width="20" />
+    } @else {
+      <img src="sun.svg" alt="" height="20" width="20" />
+    }
+  </button>
+</header>
+<main class="bungee-regular">
+  <h2>
+    <span>NoteSealer</span>
+    <br />
+    Search Across all of your notes
+  </h2>
+  <section>
+    <app-notes></app-notes>
+  </section>
+</main>

@@ -1,0 +1,70 @@
+@import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
+
+*, *::after, *::before{
+  box-sizing: border-box;
+  margin: 0;
+}
+
+html, body{
+  height: 100dvh;
+}
+body{
+  padding: 10px;
+}
+html.dark{
+  --bg-color: #101010;
+  --heading-color: #D9D9D9;
+  --text-color: #D9D9D9;
+
+  background-color: var(--bg-color);
+  color: var(--text-color);
+}
+
+html.light{
+  --bg-color: #D9D9D9;
+  --heading-color: #000000;
+  --text-color: #6D6D6D;
+
+  background-color: var(--bg-color);
+  color: var(--text-color);
+}
+
+html.main-theme.dark{
+  --main-color: #FF9257;
+  --main-color-hover: #ff925773;
+}
+
+html.main-theme.light{
+  --main-color: #FF9257;
+  --main-color-hover: #ff925773;
+}
+
+html.alternative-theme.dark{
+  --main-color: #A8E34B;
+  --main-color-hover: #a9e34b66;
+}
+
+html.alternative-theme.light{
+  --main-color: #6BBF2D;
+  --main-color-hover: #6abf2d6d;
+}
+
+
+.bungee-regular {
+  font-family: "Bungee", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.bungee-hairline-regular {
+  font-family: "Bungee Hairline", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  -webkit-text-stroke: 1px currentColor;
+}
+
+button{
+  cursor: pointer;
+  color: inherit;
+  font-family: inherit;
+}

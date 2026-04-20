@@ -1,0 +1,86 @@
+<div class="container bungee-regular">
+  <div class="title">
+    <h1>
+      NoteSealer
+      <span> register </span>
+    </h1>
+  </div>
+  <form [formGroup]="registerForm">
+    <div class="form-fields">
+      <div class="form-field">
+        <label for="">Username:</label>
+        <input type="text" formControlName="name" />
+        @if (registerForm.get('name')?.invalid && registerForm.get('name')?.touched) {
+          <p style="color: #7c0d0d">Invalid Username</p>
+        }
+      </div>
+
+      <div class="form-field">
+        <label for="">Email:</label>
+        <input type="text" formControlName="email" />
+        @if (registerForm.get('email')?.invalid && registerForm.get('email')?.touched) {
+          <p style="color: #7c0d0d">Invalid Email</p>
+        }
+      </div>
+
+      <div class="form-field">
+        <label for="">Password:</label>
+        <input [type]="isPasswordShown() ? 'text' : 'password'" formControlName="password" />
+        @if (isPasswordShown()) {
+          <!-- Show password (eye open) -->
+          <span (click)="isPasswordShown.update(p => !p)" class="eye-icon">
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="square"
+              stroke-linejoin="miter"
+            >
+              <path d="M2 12C2 12 5 5 12 5C19 5 22 12 22 12C22 12 19 19 12 19C5 19 2 12 2 12Z" />
+              <rect x="9" y="9" width="6" height="6" />
+            </svg>
+          </span>
+        } @else {
+          <span (click)="isPasswordShown.update(p => !p)" class="eye-icon">
+            <!-- Hide password (eye with slash) -->
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="square"
+              stroke-linejoin="miter"
+            >
+              <path d="M2 12C2 12 5 5 12 5C19 5 22 12 22 12C22 12 19 19 12 19C5 19 2 12 2 12Z" />
+              <line x1="4" y1="4" x2="20" y2="20" />
+            </svg>
+          </span>
+        }
+        @if (registerForm.get('password')?.invalid && registerForm.get('password')?.touched) {
+          <p style="color: #7c0d0d">Invalid Password</p>
+        }
+      </div>
+    </div>
+
+    <div class="bottom">
+      <div>
+        <p class="a-h-a" routerLink="/login">Already have an account ?</p>
+      </div>
+      <button class="log" (click)="signup()">Create Account</button>
+    </div>
+  </form>
+</div>
+@if (errorMessage() != '' && !isErrorDismissed()) {
+  <app-error-message-dialog
+    [errorMessage]="errorMessage()"
+    (isErrorMessageDismissed)="isErrorDismissed.set($event)"
+  ></app-error-message-dialog>
+}
+@if (loading()) {
+  <app-loading-popup></app-loading-popup>
+}

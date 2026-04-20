@@ -1,0 +1,28 @@
+<div class="container bungee-hairline-regular">
+  <div class="dialog-box">
+    <div class="top">
+      <!-- Caution (triangle with !) -->
+      <svg
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="square"
+        stroke-linejoin="miter"
+      >
+        <path d="M12 3L2 21H22L12 3Z" />
+        <line x1="12" y1="10" x2="12" y2="15" />
+        <line x1="12" y1="18" x2="12" y2="18" stroke-width="3" />
+      </svg>
+    </div>
+    <div class="middle">
+      <p>
+        {{ context() }}
+      </p>
+    </div>
+    <div class="bottom">
+      <button class="cancel" (click)="selectionCancel()">Cancel</button>
+      <button class="confirm" (click)="selectionConfirm()">Confirm</button>
+    </div>
+  </div>
+</div>
