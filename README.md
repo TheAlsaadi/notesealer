@@ -3,15 +3,7 @@
 > A clean, minimalist note-taking application built as a comprehensive full-stack learning project.
 
 Notesealer is a simple note app with a clean and minimalist design, built for practice and learning purposes. The goal was to create an application that covers the fundamentals and core concepts of a production-grade full-stack REST API application — from database modeling all the way through to deployment.
-
 ---
-
-## Overview
-
-This project was designed as a hands-on exercise to explore and implement the essential building blocks of modern full-stack web development. Every feature in Notesealer was chosen deliberately to reinforce a specific concept or pattern commonly found in real-world applications.
-
----
-
 ## Core Concepts Covered
 
 ### Architecture & Conventions
