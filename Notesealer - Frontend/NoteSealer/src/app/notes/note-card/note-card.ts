@@ -5,7 +5,7 @@ import { DatePipe } from '@angular/common';
 import { NoteService } from '../../services/NoteService/NoteService';
 import { ConfirmDialog } from '../../confirm-dialog/confirm-dialog';
 import { LoadingPopup } from '../../loading-popup/loading-popup';
-import { LongPressDirective } from "../../directives/LongPressDirective";
+import { LongPressDirective } from '../../directives/LongPressDirective';
 
 @Component({
   selector: 'app-note-card',
@@ -25,25 +25,26 @@ export class NoteCard {
   private noteService = inject(NoteService);
 
   getPreview(html: string): string {
+    const withBreaks = html.replace(/<br\s*\/?>/gi, ' ').replace(/<\/(p|div|li|h[1-6])>/gi, ' ');
     const div = document.createElement('div');
-    div.innerHTML = html;
-    const text = div.textContent || '';
-    return text.substring(0, 20) + (text.length > 20 ? '...' : '');
+    div.innerHTML = withBreaks;
+    const text = (div.textContent || '').replace(/\s+/g, ' ').trim();
+    return text.length > 20 ? text.substring(0, 20) + '...' : text;
   }
 
   delete() {
     this.loading.set(true);
     this.isDialogOpen.set(false);
     this.noteService.deleteById(this.note().id).subscribe((res) => {
-      this.noteDeleted.emit(true)
+      this.noteDeleted.emit(true);
       this.loading.set(false);
     });
   }
 
-  selectNote(){
-    this.select.emit(this.note())
+  selectNote() {
+    this.select.emit(this.note());
   }
-  unselectNote(){
-    this.unselect.emit(this.note())
+  unselectNote() {
+    this.unselect.emit(this.note());
   }
 }

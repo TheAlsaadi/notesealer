@@ -38,7 +38,7 @@
         @if (isSelectionEnabled()) {
           <div class="delete-cancel">
             <button (click)="resetSelection()">Cancel Selection</button>
-            <button (click)="deleteSelection()">Delete {{ selectedNotes().length }} Notes</button>
+            <button (click)="deleteSelectionCheck()">Delete {{ selectedNotes().length }} Notes</button>
           </div>
         } @else {
           <button class="select-button" (click)="isSelectionEnabled.set(true)">Select Notes</button>
@@ -72,3 +72,10 @@
     </section>
   }
 </div>
+@if (isDialogOpen()) {
+  <app-confirm-dialog
+    context="Deleting these notes is irreversible!"
+    (cancel)="isDialogOpen.set(false)"
+    (confirm)="deleteSelection()"
+  ></app-confirm-dialog>
+}

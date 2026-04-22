@@ -6,10 +6,12 @@ import { NoteService } from '../services/NoteService/NoteService';
 import { Note } from '../model/note-model';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { debounceTime, distinctUntilChanged, tap } from 'rxjs';
+import { ConfirmDialog } from "../confirm-dialog/confirm-dialog";
+import { deleteSelection } from '@tiptap/core';
 
 @Component({
   selector: 'app-notes',
-  imports: [NoteCard, LoadingPopup, RouterLink, ReactiveFormsModule, FormsModule],
+  imports: [NoteCard, LoadingPopup, RouterLink, ReactiveFormsModule, FormsModule, ConfirmDialog],
   templateUrl: './notes.html',
   styleUrl: './notes.scss',
 })
@@ -20,6 +22,7 @@ export class Notes implements OnInit {
   loading = signal<boolean>(false);
   isFilterApplied = signal<boolean>(false);
   isSelectionEnabled = signal<boolean>(false);
+  isDialogOpen = signal<boolean>(false);
   selectedNotes = signal<Note[]>([]);
   sortDirection = signal<'DESC' | 'ASC' >('DESC');
 
@@ -138,12 +141,21 @@ export class Notes implements OnInit {
     this.noteService.deleteMultiple(ids).subscribe({
       next: () => {
         this.refresh();
-        this.isSelectionEnabled.set(false);
       },
       error: (err) => {
         this.loading.set(false);
-        this.isSelectionEnabled.set(false);
       },
     });
+    this.isDialogOpen.set(false)
+    this.isSelectionEnabled.set(false);
+  }
+
+  deleteSelectionCheck(){
+    if(this.selectedNotes().length === 0){
+      return
+    }
+    else{
+      this.isDialogOpen.set(true)
+    }
   }
 }
