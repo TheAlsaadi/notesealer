@@ -1,16 +1,34 @@
-Brief view: Notesealer is a simple note app with a clean and simple design made for practice and learning purposes.
+# Notesealer
 
-The idea was to create an app that covers the fundamentals and the main concepts of a Full stack REST api app.
+> A clean, minimalist note-taking application built as a comprehensive full-stack learning project.
 
-Notesealer covers these following concepts:
-# Following files and folders naming and structuring conventions.
-# Authentication with JWT tokens.
-# REST API CRUD operations.
-# JPA/Hibernate mappings and database connection (ORM and JDBC).
-# Settings System with optimistic update (Update the UI then call the backend, if anything fail then fall back to previse state).
-# Search and sorting system.
-# Multiple theme system.
-# Exception handling.
-# Library integrations (ex: TipTap for note editing).
-# Design using Figma.
-# Deployment.
+Notesealer is a simple note app with a clean and minimalist design, built for practice and learning purposes. The goal was to create an application that covers the fundamentals and core concepts of a production-grade full-stack REST API application — from database modeling all the way through to deployment.
+
+---
+
+## Overview
+
+This project was designed as a hands-on exercise to explore and implement the essential building blocks of modern full-stack web development. Every feature in Notesealer was chosen deliberately to reinforce a specific concept or pattern commonly found in real-world applications.
+
+---
+
+## Core Concepts Covered
+
+### Architecture & Conventions
+- **Project Structure** — Following industry-standard file and folder naming conventions and structuring principles for maintainable, scalable codebases.
+- **Exception Handling** — Centralized, consistent error handling across the API layer with meaningful responses.
+
+### Backend
+- **REST API** — Complete CRUD operations implemented following RESTful design principles.
+- **Authentication** — Stateless authentication using JWT tokens for secure session management.
+- **Database Layer** — JPA/Hibernate mappings for ORM-based persistence, alongside raw JDBC for understanding the layer beneath.
+- **Search & Sorting** — Server-side search and sorting capabilities integrated into the API.
+
+### Frontend
+- **Optimistic UI Updates** — Settings system that updates the UI immediately, then syncs with the backend. On failure, the state gracefully rolls back to its previous value.
+- **Theming System** — Multiple theme support with seamless switching.
+- **Rich Text Editing** — Integration with [TipTap](https://tiptap.dev/) for a modern note editing experience.
+
+### Design & Delivery
+- **UI/UX Design** — Interface designed from scratch in Figma before implementation.
+- **Deployment** — Full deployment pipeline to take the application from local development to production.
